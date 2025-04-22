@@ -11,7 +11,7 @@ john = Blueprint('John', __name__)
 
 # ------------------------------------------------------------
 # Get the top 5 most popular books based on favorites count
-@john.route('/mostPopularBooks')
+@books.route('/mostPopularBooks')
 def get_most_popular_books():
     query = '''
             SELECT Books.BookID, 
@@ -35,7 +35,7 @@ def get_most_popular_books():
 
 #------------------------------------------------------------
 # Get all genres of books available, package them, and return them to John for selection
-@john.route('/customerInterests/<CustomerID>', methods=['GET'])
+@customer.route('/customerInterests/<CustomerID>', methods=['GET'])
 def get_genre_of_interest(CustomerID):
     query = '''
             SELECT Genre
@@ -53,7 +53,7 @@ def get_genre_of_interest(CustomerID):
 
 #------------------------------------------------------------
 # Add books that John enjoyed so he can reference back to this list
-@john.route('/favorites', methods=['POST'])
+@books.route('/favorites', methods=['POST'])
 def add_to_favorite_list():
     the_data = request.json
     current_app.logger.info(the_data)
@@ -83,7 +83,7 @@ def add_to_favorite_list():
 
 # ------------------------------------------------------------
 # Update a John's membership plan
-@john.route('/membershipUpdate', methods=['PUT'])
+@membershipplan.route('/membershipUpdate', methods=['PUT'])
 def update_membership():
     current_app.logger.info('PUT /membershipUpdate route')
     membership_info = request.json
@@ -108,7 +108,7 @@ def update_membership():
 
 # ------------------------------------------------------------
 # Delete a favorite book from John's list by BookID
-@john.route('/removeFavorite/<bookID>', methods=['DELETE'])
+@books.route('/removeFavorite/<bookID>', methods=['DELETE'])
 def remove_favorite(bookID):
     current_app.logger.info('DELETE /removeFavorite/{bookID} route')
 
