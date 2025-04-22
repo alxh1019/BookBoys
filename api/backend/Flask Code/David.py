@@ -13,6 +13,24 @@ from backend.ml_models.model01 import predict
 # routes.
 david = Blueprint('david', __name__)
 
+# ------------------------------------------------------------
+# Get the 5 most recent admin logins by name
+@david.route('/getRecentAdminLogins')
+def get_recent_admin_logins():
+    query = '''
+                SELECT Admin.Last_Login
+                FROM Admin
+                ORDER BY Date DESC
+                LIMIT 5
+    '''
+    cursor = db.get_db().cursor()
+    cursor.execute(query)
+    theData = cursor.fetchall()
+
+    response = make_response(jsonify(theData))
+    response.status_code = 200
+    return response
+
 #------------------------------------------------------------
 # Delete a customer by customerId
 @customers.route('/customer/<customer_id>', methods=['DELETE'])
