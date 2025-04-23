@@ -57,6 +57,14 @@ if st.button("Act as John, a Political Strategy Advisor",
     logger.info("Logging in as Political Strategy Advisor Persona")
     st.switch_page('pages/00_Pol_Strat_Home.py')
 
+if st.button('Act as Emily, a Librarian',
+            type = 'primary',
+            use_container_width=True):
+    st.session_state['authenticated'] = True
+    st.session_state['role'] = 'Librarian'
+    st.session_state['first_name'] = 'Emily'
+    st.switch_page('pages/05_Librarian_Home.py')
+
 if st.button('Act as Mohammad, an USAID worker', 
             type = 'primary', 
             use_container_width=True):
