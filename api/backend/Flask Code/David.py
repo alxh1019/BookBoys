@@ -15,14 +15,30 @@ david = Blueprint('david', __name__)
 
 # ------------------------------------------------------------
 # Get the 5 most recent admin logins by name
-@david.route('/getRecentAdminLogins')
+@admin.route('/getRecentAdminLogins')
 def get_recent_admin_logins():
     query = '''
-                SELECT Admin.Last_Login
-                FROM Admin
-                ORDER BY Date DESC
-                LIMIT 5
-    '''
+            SELECT Admin.FName, Admin.LName, Admin.Last_Login
+            FROM Admin
+            ORDER BY Last_Login DESC
+            LIMIT 5
+        '''
+    cursor = db.get_db().cursor()
+    cursor.execute(query)
+    theData = cursor.fetchall()
+
+    response = make_response(jsonify(theData))
+    response.status_code = 200
+    return response
+
+# ------------------------------------------------------------
+# Route to get admins of BookBoys Database
+@customers.route('/getCustomerMember')
+def get_all_admins():
+    query = '''
+                    SELECT Admin.FName, Admin.LName
+                    FROM Admin
+        '''
     cursor = db.get_db().cursor()
     cursor.execute(query)
     theData = cursor.fetchall()
@@ -68,3 +84,27 @@ def update_book_status():
     db.get_db().commit()
 
     return f"Book ID {book_id} status updated to '{status}'!", 200
+
+#------------------------------------------------------------
+# Add a book to the collection
+@books.route('/books', methods=['POST'])
+def add_books():
+    current_app.logger.info('POST /books route')
+
+    book_info = request.json
+    book_id = book_info['BookID']
+    genre = book_info['genre']
+    title = book_info['title']
+    pages = book_info['pages']
+
+    query = '''
+                INSERT INTO Books (book_id, genre, title, pages)
+                VALUES (%s, %s, %s, %s, %s)
+                '''
+
+    data = (book_id, genre, title, pages)
+    cursor = db.get_db().cursor()
+    cursor.execute(query, data)
+    db.get_db().commit()
+
+    return 'New book created!', 201
