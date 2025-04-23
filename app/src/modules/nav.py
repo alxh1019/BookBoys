@@ -20,6 +20,10 @@ def PolStratAdvHomeNav():
         "pages/00_Pol_Strat_Home.py", label="Political Strategist Home", icon="👤"
     )
 
+def LibrarianHomeNav():
+    st.sidebar.page_link(
+        "pages/05_Librarian_Home.py", label="Librarian Home", icon="👤"
+    )
 
 def WorldBankVizNav():
     st.sidebar.page_link(
