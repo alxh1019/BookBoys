@@ -84,20 +84,15 @@ def update_event_details():
     return 'event updated!'
 
 #------------------------------------------------------------
-# Delete all events that have already passed (based on Date)
-@events.route('/removePastEvents', methods=['DELETE'])
-def remove_past_events():
-    current_app.logger.info('DELETE /removePastEvents route')
-
-    query = '''
-            DELETE FROM Events
-            WHERE Date < CURDATE()
-            '''
+#Remove a specific event by ID (e.g. after the event's date
+#has passed
+@events.route('/events/<int:event_id>', methods=['DELETE'])
+def delete_event(event_id):
+    query = "DELETE FROM Events WHERE EventID = %s"
     cursor = db.get_db().cursor()
-    cursor.execute(query)
+    cursor.execute(query, (event_id,))
     db.get_db().commit()
-
-    return 'Past events removed!'
+    return 'Event deleted!', 200
 
 #------------------------------------------------------------
 # Create a new event for the library
