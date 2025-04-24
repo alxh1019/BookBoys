@@ -1,12 +1,10 @@
 import streamlit as st
 import requests
 
-# Replace with the actual URL of your Flask backend
 BASE_URL = "http://localhost:8501"
 
 st.title("Delete an Event")
 
-# Get all events first so the user can pick one to delete
 st.subheader("Select an Event to Delete")
 
 try:

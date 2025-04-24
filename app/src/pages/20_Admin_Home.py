@@ -22,7 +22,7 @@ if st.button('View the favorite customer at this library',
 if st.button('View the book donation guidelines',
              type = 'primary',
              use_container_width=True):
-  st.switch_page('pages/23_book_donation_guidelines.py')
+  st.switch_page('pages/23_delete_book_genre.py')
 
 if st.button('Update the books in the library',
              type = 'primary',
