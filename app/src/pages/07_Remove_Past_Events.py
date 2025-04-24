@@ -1,13 +1,14 @@
 import streamlit as st
 import requests
 
-BASE_URL = "http://localhost:8501"
+BASE_URL = "http://localhost:4000" #8501?
 
 st.title("Delete an Event")
 
 st.subheader("Select an Event to Delete")
 
 try:
+    #f"{BASE_URL}/events/mostRecentEvents"
     response = requests.get(f"{BASE_URL}/mostRecentEvents")
     response.raise_for_status()
     events = response.json()
