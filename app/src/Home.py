@@ -81,7 +81,6 @@ if st.button('Act as Librarian',
     st.session_state['first_name'] = 'Emily'
     st.switch_page('pages/05_Librarian_Home.py')
 
-
 if st.button('Act as Donator',
              type = 'primary',
              use_container_width=True):
@@ -89,3 +88,13 @@ if st.button('Act as Donator',
     st.session_state['role'] = 'Donator'
     st.session_state['first_name'] = 'Kelly'
     st.switch_page('pages/20_Donator_Home.py')
+
+if st.button('Act as Reader',
+             type = 'primary',
+             use_container_width=True):
+    st.session_state['authenticated'] = True
+    st.session_state['role'] = 'Reader'
+    st.session_state['first_name'] = 'John'
+    st.switch_page('pages/14_John_Common_User.py')
+
+
