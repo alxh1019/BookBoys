@@ -24,7 +24,8 @@ with st.form("donated_book_form"):
                     "genre": genre,
                     "pages": int(pages)
                 }
-                response = requests.put(f"{BASE_URL}/updateBookStatus", json=payload)
+                BASE_URL = "http://localhost:8501"
+                response = requests.put(f"{BASE_URL}/update_library_books", json=payload)
 
                 if response.status_code == 200:
                     st.success("Book successfully added to the library!")

@@ -15,7 +15,7 @@ kelly = Blueprint('Kelly', __name__)
 
 #------------------------------------------------------------
 # Get all the library donation guidelines to the library from the system
-@books.route('/guidelines')
+@kelly.route('/guidelines')
 def book_donations_guidelines():
     query = '''
     SELECT WebsiteURL, Name, LastUpdated
@@ -32,7 +32,7 @@ def book_donations_guidelines():
     return response
 #------------------------------------------------------------
 #Get all the books donated to the library from the system
-@books.route('/allBooks', methods=['GET'])
+@kelly.route('/allBooks', methods=['GET'])
 def user_donated_books():
     query = '''
             SELECT BookID,
@@ -51,7 +51,7 @@ def user_donated_books():
     return response
 # ------------------------------------------------------------
 # Update library book info for books donated to the library
-@books.route('/updateBookStatus', methods = ['PUT'])
+@kelly.route('/updateBookStatus', methods = ['PUT'])
 def update_library_books():
     current_app.logger.info('PUT /book route')
     book_info = request.json
@@ -70,7 +70,7 @@ def update_library_books():
     return 'New book added to the library!'
 #------------------------------------------------------------------
 #Delete the book genre
-@books.route('/deleteBooks', methods = ['DELETE'])
+@kelly.route('/deleteBooks', methods = ['DELETE'])
 def delete_book_genre():
     current_app.logger.info('DELETE /removeBooks route')
     query = '''
@@ -83,7 +83,7 @@ def delete_book_genre():
     return 'Old Book Genre Deleted!'
 #-----------------------------------------------------------------------
 #Librarian's favorite customer
-@book.route('/favoriteCustomer', methods = ['POST'])
+@kelly.route('/favoriteCustomer', methods = ['POST'])
 def favorite_customer():
     current_app.logger.info('POST /events route')
 
