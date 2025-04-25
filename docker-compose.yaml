@@ -23,5 +23,6 @@ services:
     hostname: db
     volumes:
       - ./database-files:/docker-entrypoint-initdb.d/:ro
+      - ./database-files:/app/database-files #newline, debug attempt, prob remove!!
     ports:
       - 3200:3306
