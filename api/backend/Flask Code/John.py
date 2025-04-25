@@ -55,31 +55,31 @@ def get_genre_of_interest(CustomerID):
 # Add books that John enjoyed so he can reference back to this list
 @john.route('/favorites', methods=['POST'])
 def add_to_favorite_list():
-    the_data = request.json
-    current_app.logger.info(the_data)
+   the_data = request.json
+   current_app.logger.info(the_data)
 
-    name = the_data['Books_name']
-    genre = the_data['Books_genre']
-    bookID = the_data['Books_BookID']
-    authorID = the_data['Books_AuthorID']
+   name = the_data['Books_name']
+   genre = the_data['Books_genre']
+   bookID = the_data['Books_BookID']
+   authorID = the_data['Books_AuthorID']
 
-    query = f'''
-            INSERT INTO Favorites (product_name,
-                                  genre,
-                                  bookID, 
-                                  authorID)
-            VALUES ('{name}', '{genre}', '{str(bookID)}', {str(authorID)})
-        '''
+   query = f'''
+           INSERT INTO Favorites (product_name,
+                                 genre,
+                                 bookID,
+                                 authorID)
+           VALUES ('{name}', '{genre}', '{str(bookID)}', {str(authorID)})
+       '''
 
-    current_app.logger.info(query)
+   current_app.logger.info(query)
 
-    cursor = db.get_db().cursor()
-    cursor.execute(query)
-    db.get_db().commit()
+   cursor = db.get_db().cursor()
+   cursor.execute(query)
+   db.get_db().commit()
 
-    response = make_response("Successfully added product")
-    response.status_code = 200
-    return response
+   response = make_response("Successfully added product")
+   response.status_code = 200
+   return response
 
 # ------------------------------------------------------------
 # Update a John's membership plan

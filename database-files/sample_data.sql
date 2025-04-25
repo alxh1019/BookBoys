@@ -173,6 +173,15 @@ CREATE Table Manages(
     FOREIGN KEY (WebsiteURL) REFERENCES Website(WebsiteURL) ON DELETE CASCADE
 );
 
+CREATE TABLE Favorites (
+    BookID INT NOT NULL,
+    AuthorID INT NOT NULL,
+    product_name VARCHAR(150),
+    genre VARCHAR(50),
+    PRIMARY KEY (BookID),
+    FOREIGN KEY (BookID) REFERENCES Books(BookID) ON DELETE CASCADE,
+    FOREIGN KEY (AuthorID) REFERENCES Author(AuthorID) ON DELETE CASCADE
+);
 
 insert into Customer (CustomerID, Membership_Date, FName, LName, MName) values (1, '4/13/2024', 'Miguel', 'Stinchcombe', 'Ashlen');
 insert into Customer (CustomerID, Membership_Date, FName, LName, MName) values (2, '4/14/2023', 'Damara', 'Coulling', 'Amory');
