@@ -15,7 +15,7 @@ emily = Blueprint('emily', __name__)
 
 #------------------------------------------------------------------------
 # Get the top 5 most recent (upcoming) events from the database
-@events.route('/mostRecentEvents')
+@emily.route('/mostRecentEvents')
 def get_most_recent_events():
     query = '''
             SELECT EventID,
@@ -37,7 +37,7 @@ def get_most_recent_events():
 
 # ------------------------------------------------------------
 # Route to get a list of all books in the database.
-@books.route('/allBooks', methods=['GET'])
+@emily.route('/allBooks', methods=['GET'])
 def get_all_books():
     query = '''
             SELECT BookID,
@@ -59,7 +59,7 @@ def get_all_books():
 #------------------------------------------------------------
 # Update customer info for customer with particular userID
 #   Notice the manner of constructing the query.
-@events.route('/events', methods=['PUT'])
+@emily.route('/events', methods=['PUT'])
 def update_event_details():
     current_app.logger.info('PUT /events route')
     event_info = request.json
@@ -86,7 +86,7 @@ def update_event_details():
 #------------------------------------------------------------
 #Remove a specific event by ID (e.g. after the event's date
 #has passed
-@events.route('/events/<int:event_id>', methods=['DELETE'])
+@emily.route('/events/<int:event_id>', methods=['DELETE'])
 def delete_event(event_id):
     query = "DELETE FROM Events WHERE EventID = %s"
     cursor = db.get_db().cursor()
@@ -96,7 +96,7 @@ def delete_event(event_id):
 
 #------------------------------------------------------------
 # Create a new event for the library
-@events.route('/events', methods=['POST'])
+@emily.route('/events', methods=['POST'])
 def create_event():
     current_app.logger.info('POST /events route')
 

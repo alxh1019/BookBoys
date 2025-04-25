@@ -1,7 +1,7 @@
 import streamlit as st
 import requests
 
-BASE_URL = "http://localhost:4000" #8501?
+BASE_URL = "http://localhost:8501"
 
 st.title("Delete an Event")
 
