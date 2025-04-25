@@ -15,7 +15,7 @@ david = Blueprint('david', __name__)
 
 # ------------------------------------------------------------
 # Get the 5 most recent admin logins by name
-@admin.route('/getRecentAdminLogins')
+@david.route('/getRecentAdminLogins')
 def get_recent_admin_logins():
     query = '''
             SELECT Admin.FName, Admin.LName, Admin.Last_Login
@@ -33,7 +33,7 @@ def get_recent_admin_logins():
 
 # ------------------------------------------------------------
 # Route to get admins of BookBoys Database
-@customers.route('/getCustomerMember')
+@david.route('/getCustomerMember')
 def get_all_admins():
     query = '''
                     SELECT Admin.FName, Admin.LName
@@ -49,7 +49,7 @@ def get_all_admins():
 
 #------------------------------------------------------------
 # Delete a customer by customerId
-@customers.route('/customer/<customer_id>', methods=['DELETE'])
+@david.route('/customer/<customer_id>', methods=['DELETE'])
 def delete_customer(customer_id):
     current_app.logger.info(f'DELETE /customer/{customer_id} route')
 
@@ -65,7 +65,7 @@ def delete_customer(customer_id):
 
 #------------------------------------------------------------
 # Update a book's status (e.g., In Library or Checked Out)
-@books.route('/books/status', methods=['PUT'])
+@david.route('/books/status', methods=['PUT'])
 def update_book_status():
     current_app.logger.info('PUT /books/status route')
 
@@ -87,7 +87,7 @@ def update_book_status():
 
 #------------------------------------------------------------
 # Add a book to the collection
-@books.route('/books', methods=['POST'])
+@david.route('/books', methods=['POST'])
 def add_books():
     current_app.logger.info('POST /books route')
 

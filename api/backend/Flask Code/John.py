@@ -6,12 +6,12 @@ from flask import current_app
 from backend.db_connection import db
 
 #------------------------------------------------------------
-# Create a new object for David, which is a collection of routes.
+# Create a new object for John, which is a collection of routes.
 john = Blueprint('John', __name__)
 
 # ------------------------------------------------------------
 # Get the top 5 most popular books based on favorites count
-@books.route('/mostPopularBooks')
+@john.route('/mostPopularBooks')
 def get_most_popular_books():
     query = '''
             SELECT Books.BookID, 
@@ -35,7 +35,7 @@ def get_most_popular_books():
 
 #------------------------------------------------------------
 # Get all genres of books available, package them, and return them to John for selection
-@customer.route('/customerInterests/<CustomerID>', methods=['GET'])
+@john.route('/customerInterests/<CustomerID>', methods=['GET'])
 def get_genre_of_interest(CustomerID):
     query = '''
             SELECT Genre
@@ -53,7 +53,7 @@ def get_genre_of_interest(CustomerID):
 
 #------------------------------------------------------------
 # Add books that John enjoyed so he can reference back to this list
-@books.route('/favorites', methods=['POST'])
+@john.route('/favorites', methods=['POST'])
 def add_to_favorite_list():
     the_data = request.json
     current_app.logger.info(the_data)
@@ -83,7 +83,7 @@ def add_to_favorite_list():
 
 # ------------------------------------------------------------
 # Update a John's membership plan
-@membershipplan.route('/membershipUpdate', methods=['PUT'])
+@john.route('/membershipUpdate', methods=['PUT'])
 def update_membership():
     current_app.logger.info('PUT /membershipUpdate route')
     membership_info = request.json
@@ -108,7 +108,7 @@ def update_membership():
 
 # ------------------------------------------------------------
 # Delete a favorite book from John's list by BookID
-@books.route('/removeFavorite/<bookID>', methods=['DELETE'])
+@john.route('/removeFavorite/<bookID>', methods=['DELETE'])
 def remove_favorite(bookID):
     current_app.logger.info('DELETE /removeFavorite/{bookID} route')
 

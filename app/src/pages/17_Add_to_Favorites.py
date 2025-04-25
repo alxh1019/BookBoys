@@ -5,28 +5,28 @@ import streamlit as st
 import requests
 from modules.nav import SideBarLinks
 
-st.set_page_config(layout='wide')
-SideBarLinks()
 
-st.title("Add a Book to Your Favorites")
+st.title("Add a Favorite Book")
 
-name = st.text_input("Book Title")
-genre = st.text_input("Genre")
+st.markdown("Fill out the details below to mark a book as a favorite.")
+
+customer_id = st.text_input("Customer ID")
 book_id = st.text_input("Book ID")
-author_id = st.text_input("Author ID")
 
-if st.button("Add to Favorites", type="primary"):
-    payload = {
-        "Books_name": name,
-        "Books_genre": genre,
-        "Books_BookID": book_id,
-        "Books_AuthorID": author_id
-    }
-    try:
-        resp = requests.post("http://backend:5000/favorites", json=payload)
-        if resp.status_code == 200:
-            st.success("Book added to favorites!")
-        else:
-            st.error("Failed to add book.")
-    except:
-        st.error("API connection failed.")
+if st.button("Submit Favorite Book"):
+    if not all([customer_id, book_id]):
+        st.error("Please fill out all required fields.")
+    else:
+        data = {
+            "CustomerID": customer_id,
+            "BookID": book_id
+        }
+
+        try:
+            response = requests.post("http://127.0.0.1:5000/favorites", json=data)
+            if response.status_code == 201:
+                st.success("Favorite book created successfully!")
+            else:
+                st.error(f"Failed to create favorite book. Status code: {response.status_code}")
+        except Exception as e:
+            st.error(f"Error connecting to server: {e}")
