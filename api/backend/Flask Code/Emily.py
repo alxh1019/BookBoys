@@ -15,16 +15,17 @@ emily = Blueprint('emily', __name__)
 
 #------------------------------------------------------------------------
 # Get the top 5 most recent (upcoming) events from the database
+'''
 @emily.route('/mostRecentEvents')
 def get_most_recent_events():
-    query = '''
+    
+    query = 
             SELECT EventID,
                    Title,
                    Location, Date, Time, Max_Capacity
             FROM Events
             ORDER BY Date DESC
-                LIMIT 5 \
-            '''
+                LIMIT 5 
 
     # Same process as handler above
     cursor = db.get_db().cursor()
@@ -34,18 +35,18 @@ def get_most_recent_events():
     response = make_response(jsonify(theData))
     response.status_code = 200
     return response
-
+'''
 # ------------------------------------------------------------
 # Route to get a list of all books in the database.
+'''
 @emily.route('/allBooks', methods=['GET'])
 def get_all_books():
-    query = '''
+    query =
             SELECT BookID,
                    title,
                    genre,
                    pages
             FROM Books
-            '''
 
     # Same process as above
     cursor = db.get_db().cursor()
@@ -55,10 +56,11 @@ def get_all_books():
     response = make_response(jsonify(theData))
     response.status_code = 200
     return response
-
+'''
 #------------------------------------------------------------
 # Update customer info for customer with particular userID
 #   Notice the manner of constructing the query.
+'''
 @emily.route('/events', methods=['PUT'])
 def update_event_details():
     current_app.logger.info('PUT /events route')
@@ -82,8 +84,9 @@ def update_event_details():
     r = cursor.execute(query, data)
     db.get_db().commit()
     return 'event updated!'
-
+'''
 #------------------------------------------------------------
+'''
 #Remove a specific event by ID (e.g. after the event's date
 #has passed
 @emily.route('/events/<int:event_id>', methods=['DELETE'])
@@ -93,10 +96,28 @@ def delete_event(event_id):
     cursor.execute(query, (event_id,))
     db.get_db().commit()
     return 'Event deleted!', 200
-
+'''
 #------------------------------------------------------------
 # Create a new event for the library
-@emily.route('/events', methods=['POST'])
+@emily.route('/addEvent', methods=['POST'])
+def add_event():
+    data = request.get_json()
+
+    # Extract fields (optional, for safety or DB logic)
+    event_id = data.get("id")
+    title = data.get("title")
+    location = data.get("location")
+    date = data.get("date")
+    time = data.get("time")
+    max_capacity = data.get("max_capacity")
+
+    print(f"Received event: {data}")  # This simulates saving to a DB
+
+    # Return a success response
+    return jsonify({"message": "Event added successfully!"}), 200
+
+'''
+@emily.route('/addEvent', methods=['POST'])
 def create_event():
     current_app.logger.info('POST /events route')
 
@@ -107,14 +128,15 @@ def create_event():
     time = event_info['time']
     max_capacity = event_info['max_capacity']
 
-    query = '''
-            INSERT INTO Events (Title, Location, Date, Time, Max_Capacity)
-            VALUES (%s, %s, %s, %s, %s)
-            '''
+    query = 
+        #INSERT INTO Events (Title, Location, Date, Time, Max_Capacity)
+            #VALUES (%s, %s, %s, %s, %s)
+           
+            
     data = (title, location, date, time, max_capacity)
     cursor = db.get_db().cursor()
     cursor.execute(query, data)
     db.get_db().commit()
 
     return 'New event created!', 201
-
+    '''
