@@ -17,9 +17,9 @@ st.write('### What would you like to do today?')
 if st.button('View the favorite customer at this library',
              type = 'primary',
              use_container_width = True):
-  st.switch_page('pages/22_Favorite_Customer.py')
+  st.switch_page('pages/22_Favorite_Library_Customer.py')
 
-if st.button('View the book donation guidelines',
+if st.button('Delete a book genre within the library',
              type = 'primary',
              use_container_width=True):
   st.switch_page('pages/23_delete_book_genre.py')
