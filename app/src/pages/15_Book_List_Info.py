@@ -10,7 +10,7 @@ SideBarLinks()
 
 st.title("Browse Books by Genre")
 
-customer_id = st.session_state.get("user_id", "1")  # default for demo
+customer_id = st.session_state.get("user_id", "1")
 genres = []
 
 try:

@@ -13,7 +13,7 @@ book_id_to_delete = st.text_input("Enter the Book ID to delete from favorites:")
 if st.button("Delete Favorite"):
     if book_id_to_delete:
         try:
-            BASE_URL = "http://localhost:4000"  # Use your API port here
+            BASE_URL = "http://web-api:4000"
             response = requests.delete(f"{BASE_URL}/removeFavorite/{book_id_to_delete}")
             if response.status_code == 200:
                 st.success("Favorite book deleted successfully!")
