@@ -14,7 +14,7 @@ st.write('')
 st.write('')
 st.write('### What would you like to do today?')
 
-if st.button('View the favorite customer at this library',
+if st.button('Adding a favorite library customer',
              type = 'primary',
              use_container_width = True):
   st.switch_page('pages/22_Favorite_Library_Customer.py')
