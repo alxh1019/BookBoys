@@ -73,6 +73,14 @@ if st.button('Act as System Administrator',
     st.session_state['first_name'] = 'SysAdmin'
     st.switch_page('pages/20_Donator_Home.py')
 
+if st.button('Act as Admin',
+            type = 'primary',
+            use_container_width=True):
+    st.session_state['authenticated'] = True
+    st.session_state['role'] = 'admin'
+    st.session_state['first_name'] = 'David'
+    st.switch_page('pages/25_Admin_Home.py')
+
 if st.button('Act as Librarian',
             type = 'primary',
             use_container_width=True):
