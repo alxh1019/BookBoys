@@ -87,7 +87,7 @@ def update_book_status():
 
 #------------------------------------------------------------
 # Add a book to the collection
-@david.route('/books', methods=['POST'])
+@david.route('/addBook', methods=['POST'])
 def add_books():
     current_app.logger.info('POST /books route')
 
