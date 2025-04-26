@@ -1,6 +1,3 @@
-#EVENTUALLY RENAME THIS FILE TO 06_Add_New_Event.py!!! (and change button reference
-#in librarian homepage)
-
 import streamlit as st
 import requests
 import datetime

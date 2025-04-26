@@ -17,7 +17,7 @@ st.write('### What would you like to do today?')
 if st.button('View Upcoming Library Events Info',
              type='primary',
              use_container_width=True):
-  st.switch_page('pages/06_New_Events_Info.py')
+  st.switch_page('pages/06_Add_New_Event.py')
 
 if st.button('Remove Past Events',
              type='primary',
