@@ -19,12 +19,12 @@ if st.button('Browse Books by Genre',
              use_container_width=True):
   st.switch_page('pages/15_Book_List_Info.py')
 
-if st.button('View the Most Favorited Books',
-             type='primary',
-             use_container_width=True):
-  st.switch_page('pages/16_Most_Favorited.py')
-
 if st.button("Add a Book to your Favorites",
              type='primary',
              use_container_width=True):
   st.switch_page('pages/17_Add_to_Favorites.py')
+
+if st.button('Delete a Book from your Favorites',
+             type='primary',
+             use_container_width=True):
+  st.switch_page('pages/16_Remove_Favorite.py')
