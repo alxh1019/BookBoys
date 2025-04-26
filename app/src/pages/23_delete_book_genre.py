@@ -10,7 +10,8 @@ genre_to_delete = st.text_input("Enter the book genre to delete:")
 if st.button("Delete Genre"):
     if genre_to_delete:
         try:
-            response = requests.delete(f"{BASE_URL}/delete_book_genre", params={"genre": genre_to_delete})
+            BASE_URL = "http://localhost:4000"
+            response = requests.delete(f"{BASE_URL}/deleteBooks", params={"genre": genre_to_delete})
             if response.status_code == 200:
                 st.success("Book genre deleted successfully!")
             else:

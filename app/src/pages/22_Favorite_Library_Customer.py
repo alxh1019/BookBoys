@@ -25,7 +25,7 @@ if st.button("Submit Favorite Customer"):
         }
 
         try:
-            response = requests.post("http://localhost:8501/Favorite_Library_Customer", json=data)
+            response = requests.post("http://localhost:4000", json=data)
 
             if response.status_code == 201:
                 st.success("Favorite Member of the library created successfully!")

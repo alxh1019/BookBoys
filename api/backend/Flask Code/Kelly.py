@@ -79,7 +79,7 @@ def delete_book_genre():
     cursor = db.get_db().cursor()
     cursor.execute(query)
     db.get_db().commit()
-
+    print("Received DELETE request for genre:", request.args.get("genre"))
     return 'Old Book Genre Deleted!'
 #-----------------------------------------------------------------------
 #Librarian's favorite customer
