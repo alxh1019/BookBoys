@@ -2,6 +2,13 @@
 
 This repo is a template for your semester project. It includes most of the infrastructure setup (containers), sample databases, and example UI pages. Explore it fully and ask questions!
 
+## General Information
+
+- Project Description:
+- 
+- Team Members: Alex Ha, Andrew Chen, Leven Chen
+- Link to Project Demo Video: 
+
 ## Prerequisites
 
 - A GitHub Account
