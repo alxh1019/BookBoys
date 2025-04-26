@@ -18,7 +18,6 @@ emily = Blueprint('emily', __name__)
 
 @emily.route('/mostRecentEvents')
 def get_most_recent_events():
-    
     query = 
             SELECT EventID,
                    Title,
