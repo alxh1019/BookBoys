@@ -14,10 +14,10 @@ st.write('')
 st.write('')
 st.write('### What would you like to do today?')
 
-if st.button('Browse Books by Genre',
+if st.button('Change your membership plan',
              type='primary',
              use_container_width=True):
-  st.switch_page('pages/15_Book_List_Info.py')
+  st.switch_page('pages/15_Change_Membership.py')
 
 if st.button("Add a Book to your Favorites",
              type='primary',
