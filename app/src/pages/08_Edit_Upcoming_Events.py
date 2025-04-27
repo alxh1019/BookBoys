@@ -1,12 +1,15 @@
+#Edit upcoming events code save
+
 import streamlit as st
 import requests
+from datetime import datetime
 
 # Your backend base URL
 BASE_URL = "http://localhost:8501"
 
 st.title("Edit Event Information")
 
-# Step 1: Get list of recent events for selection
+# Step 1: Get a list of recent events for selection
 try:
     response = requests.get(f"{BASE_URL}/mostRecentEvents")
     response.raise_for_status()
@@ -23,8 +26,8 @@ try:
         with st.form("edit_event_form"):
             title = st.text_input("Title", selected_event["Title"])
             location = st.text_input("Location", selected_event["Location"])
-            date = st.date_input("Date", selected_event["Date"])
-            time = st.time_input("Time", selected_event["Time"])
+            date = st.date_input("Date", datetime.strptime(selected_event["Date"], "%Y-%m-%d").date())
+            time = st.time_input("Time", datetime.strptime(selected_event["Time"], "%H:%M").time())
             max_capacity = st.number_input("Max Capacity", value=int(selected_event["Max_Capacity"]), step=1)
 
             submitted = st.form_submit_button("Update Event")
@@ -45,8 +48,14 @@ try:
                     st.success("Event updated successfully!")
                     st.experimental_rerun()
                 else:
-                    st.error(f"Failed to update event. Status: {update_response.status_code}")
+                    try:
+                        error_detail = update_response.json().get('detail', 'No details provided')
+                    except Exception:
+                        error_detail = update_response.text
+                    st.error(f"Failed to update event. Status: {update_response.status_code}. Details: {error_detail}")
     else:
         st.info("No events available to edit.")
 except Exception as e:
     st.error(f"Error fetching events: {e}")
+
+

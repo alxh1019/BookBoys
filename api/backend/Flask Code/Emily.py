@@ -18,13 +18,19 @@ emily = Blueprint('emily', __name__)
 
 @emily.route('/mostRecentEvents')
 def get_most_recent_events():
+<<<<<<< HEAD
     query = 
+=======
+    
+    query = """
+>>>>>>> dee222ad4c208f8b84003fb4ca67f56f0d547f06
             SELECT EventID,
                    Title,
                    Location, Date, Time, Max_Capacity
             FROM Events
             ORDER BY Date DESC
                 LIMIT 5 
+    """
 
     # Same process as handler above
     cursor = db.get_db().cursor()
@@ -40,12 +46,13 @@ def get_most_recent_events():
 
 @emily.route('/allBooks', methods=['GET'])
 def get_all_books():
-    query =
+    query = """
             SELECT BookID,
                    title,
                    genre,
                    pages
             FROM Books
+    """
 
     # Same process as above
     cursor = db.get_db().cursor()
@@ -77,7 +84,7 @@ def update_event_details():
              'date = %s, '
              'time = %s, '
              'max_capacity = %s, ' # might be an integer!!! (change??)
-             'where id = %s')
+             'where event_id = %s')
     data = (title, location, date, time, max_capacity, event_id)
     cursor = db.get_db().cursor()
     r = cursor.execute(query, data)
@@ -90,7 +97,7 @@ def update_event_details():
 #has passed
 @emily.route('/events/<int:event_id>', methods=['DELETE'])
 def delete_event(event_id):
-    query = "DELETE FROM Events WHERE EventID = %s"
+    query = """DELETE FROM Events WHERE EventID = %s"""
     cursor = db.get_db().cursor()
     cursor.execute(query, (event_id,))
     db.get_db().commit()
@@ -110,9 +117,10 @@ def delete_event(event_id):
         time = event_info['time']
         max_capacity = event_info['max_capacity']
 
-        query =
+        query = """
             INSERT INTO Events (event_id, title, location, date, time, max_capacity)
             VALUES (%s, %s, %s, %s, %s, %s)
+        """
 
         data = (title, location, date, time, max_capacity)
         cursor = db.get_db().cursor()
