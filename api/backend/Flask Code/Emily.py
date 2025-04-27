@@ -15,22 +15,15 @@ emily = Blueprint('emily', __name__)
 
 #------------------------------------------------------------------------
 # Get the top 5 most recent (upcoming) events from the database
-
 @emily.route('/mostRecentEvents')
 def get_most_recent_events():
-<<<<<<< HEAD
-    query = 
-=======
-    
     query = """
->>>>>>> dee222ad4c208f8b84003fb4ca67f56f0d547f06
             SELECT EventID,
                    Title,
                    Location, Date, Time, Max_Capacity
             FROM Events
             ORDER BY Date DESC
-                LIMIT 5 
-    """
+                LIMIT 5 """
 
     # Same process as handler above
     cursor = db.get_db().cursor()
@@ -106,7 +99,7 @@ def delete_event(event_id):
 #------------------------------------------------------------
 # Create a new event for the library
 @emily.route('/addEvent', methods=['POST'])
-    def create_event():
+def create_event():
         current_app.logger.info('POST /events route')
 
         event_info = request.json
