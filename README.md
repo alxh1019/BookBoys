@@ -5,9 +5,11 @@ This repo is a template for your semester project. It includes most of the infra
 ## General Information
 
 - Project Description:
-- 
+BookBoys Database solves the biggest challenges libraries face today.
+Together our database simplifies and organizes the roles of customers, librarians, 
+donators, and readers in a library environment.
 - Team Members: Alex Ha, Andrew Chen, Leven Chen
-- Link to Project Demo Video: 
+- Link to Project Demo Video: https://drive.google.com/file/d/1DQ5DNdbofDjKHZqGj7Vc4syn20EQAIo0/view
 
 ## Prerequisites
 
